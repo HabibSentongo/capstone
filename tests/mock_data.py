@@ -36,7 +36,8 @@ casting_asst_token = '''eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9UTTRSR\
     V_y3lqRSY9m4KHoUhy737CY2896ORnSNL8LP_dtKX9610wH_bw47gV899vB4aLkJbVqF2kCS3ivYzfJ6\
     _ferXjYYl7wYRIwE-__2xX8jGqlqLdLV4V5YZDeYtTojGXs73WWlJSlGXAk5VOl807TtC_1QUBC2nig\
     DWzSvB7-paK0eb-ltQ8AqVKNwkjIrhYtlioRM-rKywRW3A3FDN7wfJepqVYIipn7NnZ0qTezDEJMaY0y\
-    DxwDlOsjlSY0Q66MLQWu1WOVwJYYHW9ejGfSrKOVqRTfPz2zGtNpslTeeToxAd9mU-0BUbqaETSzY9z7NvzA'''
+    DxwDlOsjlSY0Q66MLQWu1WOVwJYYHW9ejGfSrKOVqRTfPz2zGtNpslTeeToxAd9mU\
+        -0BUbqaETSzY9z7NvzA'''
 
 bad_request_error_response = {
                                 'success': False,
