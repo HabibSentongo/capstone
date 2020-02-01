@@ -11,6 +11,7 @@ from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
 
 from models import Actor, Movie, setup_db, db
+from auth import requires_auth, AuthError
 
 
 app = Flask(__name__)
@@ -27,6 +28,7 @@ PER_PAGE = 10
 Retrieves a paginated list of actors.
 '''
 @app.route('/api/v1/actors', methods=['GET'])
+@requires_auth(permission='get:actors')
 def retrieve_actors():
     page = request.args.get('page', 1, type=int)
     limit = request.args.get('limit', PER_PAGE, type=int)
@@ -50,6 +52,7 @@ def retrieve_actors():
 Retrieves a single actor by their ID.
 '''
 @app.route('/api/v1/actors/<int:id>', methods=['GET'])
+@requires_auth(permission='get:actors')
 def retrieve_actor(id):
     try:
         actor = Actor.query.get(id)
@@ -67,6 +70,7 @@ def retrieve_actor(id):
 Creates a new actor.
 '''
 @app.route('/api/v1/actors', methods=['POST'])
+@requires_auth(permission='post:actors')
 def add_actor():
     try:
         data = json.loads(request.data)
@@ -84,6 +88,7 @@ def add_actor():
 Edits an actor's details.
 '''
 @app.route('/api/v1/actors/<int:id>', methods=['PATCH'])
+@requires_auth(permission='patch:actors')
 def edit_actor(id):
     try:
         actor = Actor.query.get(id)
@@ -105,6 +110,7 @@ def edit_actor(id):
 Deletes an actor.
 '''
 @app.route('/api/v1/actors/<int:id>', methods=['DELETE'])
+@requires_auth(permission='delete:actors')
 def delete_actor(id):
     try:
         actor = Actor.query.get(id)
@@ -123,6 +129,7 @@ def delete_actor(id):
 Retrieves a paginated list of movies.
 '''
 @app.route('/api/v1/movies', methods=['GET'])
+@requires_auth(permission='get:movies')
 def retrieve_movies():
     page = request.args.get('page', 1, type=int)
     limit = request.args.get('limit', PER_PAGE, type=int)
@@ -146,6 +153,7 @@ def retrieve_movies():
 Retrieves a single movie.
 '''
 @app.route('/api/v1/movies/<int:id>', methods=['GET'])
+@requires_auth(permission='get:movies')
 def retrieve_movie(id):
     try:
         movie = Movie.query.get(id)
@@ -163,6 +171,7 @@ def retrieve_movie(id):
 Creates a movie.
 '''
 @app.route('/api/v1/movies', methods=['POST'])
+@requires_auth(permission='post:movies')
 def add_movie():
     try:
         data = json.loads(request.data)
@@ -180,6 +189,7 @@ def add_movie():
 Edits a movie.
 '''
 @app.route('/api/v1/movies/<int:id>', methods=['PATCH'])
+@requires_auth(permission='patch:movies')
 def edit_movie(id):
     try:
         movie = Movie.query.get(id)
@@ -201,6 +211,7 @@ def edit_movie(id):
 Deletes a movie.
 '''
 @app.route('/api/v1/movies/<int:id>', methods=['DELETE'])
+@requires_auth(permission='delete:movies')
 def delete_movie(id):
     try:
         movie = Movie.query.get(id)
@@ -273,6 +284,19 @@ def internal_error(error):
         'error': 500,
         'message': 'internal server error'
     }), 500
+
+
+'''
+Error handling for Authentication errors.
+Returns 401, 403 error codes.
+'''
+@app.errorhandler(AuthError)
+def auth_error(error):
+    return jsonify({
+        'success': False,
+        'error': error.status_code,
+        'message': f"{error.error['code']}: {error.error['description']}"
+    }), error.status_code
 
 
 if __name__ == '__main__':
