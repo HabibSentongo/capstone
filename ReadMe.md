@@ -47,7 +47,7 @@ This will install all of the required packages we selected within the `requireme
     - `get:movies`
     - `post:movies`
     - `patch:movies`
-    - `patch:movies`
+    - `delete:movies`
 6. Create a new machine to machine application called Casting         Assistant.
     - For each application created: Authorize the application by selecting at least one authorized API and select permissions required.
     - Repeat steps above for Casting Director and Executive Producer
@@ -116,4 +116,4 @@ flask run
 
     >_tip_: The endpoints are prefixed with  **api/v1** i.e GET actors **/api/v1/actors**
 
-#### Link to [Hosted Application]()
+#### Link to [Hosted Application](https://habib-capstone-app.herokuapp.com)
