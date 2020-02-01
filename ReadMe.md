@@ -1,4 +1,7 @@
 # Casting Agency Backend
+Capstone is a Casting Agency which models a company that is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process.
+
+This project has been created to demonstrate my newly learned skills to create a a system that simplifies and streamlines the processes of different stakeholders within the company.
 
 ## Getting Started
 
@@ -116,4 +119,184 @@ flask run
 
     >_tip_: The endpoints are prefixed with  **api/v1** i.e GET actors **/api/v1/actors**
 
+#### Sample Data to use for actors
+```
+Adding an actor. POST `/api/v1/actors` 
+Request
+{
+	"dob": "1996-05-07",
+    "gender": "Male",
+    "name": "Name two"
+}
+Response
+{
+    "actor": {
+        "age": 23,
+        "gender": "Male",
+        "id": 2,
+        "name": "Name two"
+    },
+    "success": true
+}   
+```
+```
+Getting a single actor. GET `/api/v1/actors/1`
+Response
+{
+    "actor": {
+        "age": 23,
+        "gender": "Male",
+        "id": 1,
+        "name": "Habib Ssentongo"
+    },
+    "success": true
+}
+``` 
+```
+Getting all actors. GET `/api/v1/actors`
+Response
+{
+    "actors": [
+        {
+            "age": 23,
+            "gender": "Male",
+            "id": 1,
+            "name": "Habib Ssentongo"
+        },
+        {
+            "age": 23,
+            "gender": "Male",
+            "id": 2,
+            "name": "Name two"
+        }
+    ],
+    "success": true,
+    "total-actors": 2
+}
+``` 
+```
+Updating details of an actor:   PATCH `/api/v1/actors/2`
+Request
+{
+    "name": "Firstname Lastname"
+}
+Response
+{
+    "actor": {
+        "age": 23,
+        "gender": "Male",
+        "id": 2,
+        "name": "Firstname Lastname"
+    },
+    "success": true
+}
+```
+```
+Deleting an actor.   DELETE `/api/v1/actors/2`
+Response
+{
+    "deleted": 2,
+    "success": true
+}
+```
+
+#### Sample data to use for movies
+```
+Adding a movie.     POST `/api/v1/movies`
+Request
+{     
+   "title": "Movie 2",
+   "release_date": "1995-12-11"
+}
+Response
+{
+    "movie": {
+        "id": 3,
+        "release_date": "1995-12-11",
+        "title": "Movie 2"
+    },
+    "success": true
+}
+```
+```
+Response
+Getting all movies. GET `/api/v1/movies`
+{
+    "movies": [
+        {
+            "id": 1,
+            "release_date": "2011-11-11",
+            "title": "Movie 1"
+        },
+        {
+            "id": 2,
+            "release_date": "2012-12-11",
+            "title": "Prison Break"
+        }
+    ],
+    "success": true,
+    "total-movies": 2
+}
+```
+```
+Deleting a movie.   DELETE `/api/v1/movies/1`
+Response
+{
+    "deleted": 1,
+    "success": true
+}
+```
+```
+Getting a single movie. GET `/api/v1/movies/2`
+Response
+{
+    "movie": {
+        "id": 2,
+        "release_date": "2012-12-11",
+        "title": "Prison Break"
+    },
+    "success": true
+}
+```
+```
+Updating a movie:   PATCH `/api/v1/movies/2`
+Request
+{
+	"title": "Mirrors"
+}
+Response
+{
+    "movie": {
+        "id": 2,
+        "release_date": "2012-12-11",
+        "title": "Mirrors"
+    },
+    "success": true
+}
+```
+
+#### Error Handling
+Errors are returned as JSON objects in the following format:
+```
+{
+   "success": False,
+   "error": 404,
+   "message": "resource not found"
+}
+```
+The API will return the following error types when requests fail:
+
+- 400: bad request
+- 404: resource not found
+- 422: unable to process request
+- 405: method not allowed
+- 500: internal server error
+- Error codes 401 and 403 are returned for authentication and authorization errors respectively.
+
+
 #### Link to [Hosted Application](https://habib-capstone-app.herokuapp.com)
+
+#### Credits
+- Udacity tutors
+- Udacity reviewers
+- Joaquim Irzelindo (Mentor)
