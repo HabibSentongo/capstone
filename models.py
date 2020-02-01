@@ -2,7 +2,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 
-database_uri = os.getenv('DATABASE_URI')
+database_uri = os.getenv('DATABASE_URL')
 
 db = SQLAlchemy()
 
