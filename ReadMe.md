@@ -14,7 +14,7 @@ We recommend working within a virtual environment whenever using Python for proj
 
 #### PIP Dependencies
 
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
+Once you have your virtual environment setup and running, install dependencies by naviging to the root directory and running:
 
 ```bash
 pip install -r requirements.txt
@@ -74,11 +74,11 @@ This will install all of the required packages we selected within the `requireme
 With Postgres running, create two databases.
 - From the project folder, in terminal run:
 ```bash
-createdb agency
+createdb capstone
 ```
 Create another database that will be used for running tests.
 ```bash
-createdb agency_test
+createdb capstone_test
 ```
 Ensure that the user has all privileges access to both databases. If you need additional information on setting up the PostgreSQL databases, checkout the [PostgreSQL tutorial](http://www.postgresqltutorial.com/).
 
@@ -89,7 +89,7 @@ From within the project directory first ensure you are working using your create
 To run the server:
 
 - Create a `.env` file in the root of the project directory. 
-- Copy the contents of `.env.example` into the `.env` file.
+- Copy the contents of `.env.example` into the `.env` file and update them accordingly.
 - Edit with the database information from the previous section.
 - Add the Auth0 machine to machine applications' `Client ID` and `Client Secret`.
 - Run the command `source .env` to load the environment variables.
